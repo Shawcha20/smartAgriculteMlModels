@@ -14,5 +14,3 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Ignore large files
-*.h5
-*.keras
