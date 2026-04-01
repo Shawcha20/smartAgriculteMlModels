@@ -1,15 +1,12 @@
-from fastapi import FastAPI, UploadFile
+from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from tensorflow.keras.models import load_model
 import numpy as np
 from PIL import Image
-import io
-import os
-import json
+import io, os, json
 
 app = FastAPI()
 
-# ✅ CORS FIX (VERY IMPORTANT)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -18,64 +15,53 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-BASE_DIR = os.getcwd()
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODELS_DIR = os.path.join(BASE_DIR, "Models")
 
 models = {}
 labels = {}
 
-# ======================
-# LOAD ALL MODELS
-# ======================
-def load_all_models():
-    for folder in os.listdir(MODELS_DIR):
+def get_model(crop):
+    if crop not in models:
+        folder = crop + "Model"
         folder_path = os.path.join(MODELS_DIR, folder)
 
-        if os.path.isdir(folder_path):
-            crop = folder.replace("Model", "").lower()
+        model_path = os.path.join(folder_path, f"{crop}_model.keras")
+        label_path = os.path.join(folder_path, f"{crop}_labels.json")
 
-            model_path = os.path.join(folder_path, f"{crop}_model.keras")
-            label_path = os.path.join(folder_path, f"{crop}_labels.json")
+        if os.path.exists(model_path):
+            models[crop] = load_model(model_path)
 
-            if os.path.exists(model_path):
-                print(f"Loading {crop} model...")
-                models[crop] = load_model(model_path)
+        if os.path.exists(label_path):
+            with open(label_path) as f:
+                labels[crop] = json.load(f)
 
-            if os.path.exists(label_path):
-                with open(label_path) as f:
-                    labels[crop] = json.load(f)
+    return models.get(crop), labels.get(crop)
 
-load_all_models()
-
-# ======================
-# IMAGE PREPROCESS
-# ======================
 def preprocess(img_bytes):
     img = Image.open(io.BytesIO(img_bytes)).convert("RGB")
     img = img.resize((224, 224))
     img = np.array(img) / 255.0
-    img = np.expand_dims(img, axis=0)
-    return img
+    return np.expand_dims(img, axis=0)
 
-# ======================
-# PREDICT API
-# ======================
 @app.post("/predict/{crop}")
-async def predict(crop: str, file: UploadFile):
+async def predict(crop: str, file: UploadFile = File(...)):
     crop = crop.lower()
 
-    if crop not in models:
+    model, label_map = get_model(crop)
+
+    if model is None:
         return {"error": f"{crop} model not found"}
 
     img_bytes = await file.read()
     img = preprocess(img_bytes)
 
-    preds = models[crop].predict(img)[0]
+    preds = model.predict(img)[0]
 
     class_idx = int(np.argmax(preds))
     confidence = float(np.max(preds))
 
-    disease = labels[crop][str(class_idx)]
+    disease = label_map[str(class_idx)]
 
     return {
         "crop": crop,
