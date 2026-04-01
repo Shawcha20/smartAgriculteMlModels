@@ -4,3 +4,4 @@ tensorflow
 pillow
 numpy
 python-multipart
+tensorflow==2.15.0
