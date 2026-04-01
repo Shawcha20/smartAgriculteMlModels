@@ -2,9 +2,16 @@
 */dataset/
 */datasets/
 
-# Ignore models
+# Ignore models (folders + files)
+# Ignore entire models folder
 Models/
-*/model/
+
+# Ignore model files anywhere
+*.keras
+*.tflite
+*.h5
+# Ignore TFLite temp (optional)
+*.tflite.tmp
 
 # Ignore environment
 venv/
@@ -13,4 +20,6 @@ __pycache__/
 # Ignore notebooks checkpoints
 .ipynb_checkpoints/
 
-# Ignore large files
+# Ignore OS files
+.DS_Store
+Thumbs.db
