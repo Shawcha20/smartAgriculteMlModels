@@ -43,6 +43,21 @@ MODEL_URLS = {
         "model": "https://drive.google.com/uc?export=download&id=1SD8vnvnTRsZ13kfaO5rUoSFb4Ro-RyyM",
         "labels": "https://drive.google.com/uc?export=download&id=1SNZ18j5-a7n8-oA_kq1Uf-HIkW5VvozV"
     }
+    ,
+       "spinach": {
+        "model": "https://drive.google.com/uc?export=download&id=1BDNG5B_d7REeYurfuzopSOGyONH8DmYg",
+        "labels": "https://drive.google.com/uc?export=download&id=1WPNdBskwkdwE3vKkl-Pag_9H97rBRyRx"
+    }
+    ,
+        "papaya": {
+        "model": "https://drive.google.com/uc?export=download&id=1ZZ_rp9Fz3x5kglJirWJclbWVKJYtKSsj",
+        "labels": "https://drive.google.com/uc?export=download&id=1lFVDh6ltntnAaQVnknSQ8acJuR8TGB79"
+    },
+            "cauliflower": {
+        "model": "https://drive.google.com/uc?export=download&id=1fICMVrfqjvaEENJb2226UZCK48WlfTq1",
+        "labels": "https://drive.google.com/uc?export=download&id=1y91jB5-COlNH4-jiGKoME2UmWyn62Wac"
+    },
+
 }
 
 # ======================
