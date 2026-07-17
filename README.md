@@ -25,7 +25,7 @@ The web frontend lives in a separate repository: **[smart-agriculture-web-platfo
 
 | Plant Disease Detection dashboard | Upload leaf images | Analysis results |
 |---|---|---|
-| ![Dashboard](/screenshots/"homepage farmer") | ![Upload](<img width="1592" height="850" alt="disease picture input" src="https://github.com/user-attachments/assets/381c1b73-2e99-4bbe-b22e-723951719b06" />) | ![Results](<img width="738" height="914" alt="detected diseases" src="https://github.com/user-attachments/assets/bf18d1f8-e384-4bc6-8b2b-da904892880e" />) |
+| <img src="screenshots/homepage%20farmer.png" width="260" alt="Dashboard"> | <img src="screenshots/disease%20picture%20input.png" width="260" alt="Upload"> | <img src="screenshots/detected%20diseases.png" width="260" alt="Results"> |
 
 ---
 
@@ -72,7 +72,7 @@ Each crop's classes are defined by its `*_labels.json` file (index → disease n
 ## Project Structure
 
 ```
-KrishiNova/
+smartAgriculteMlModels/
 ├── Models/                 # per-crop model cache (.tflite + *_labels.json), created at runtime
 │   ├── mango/
 │   ├── brinjal/
@@ -83,6 +83,7 @@ KrishiNova/
 │   ├── natural_death_leaf/
 │   └── rhizome_root/
 ├── brinjal/  chili/  spinach/  ...   # other crop datasets
+├── screenshots/            # README images
 ├── api.py                  # FastAPI serving app
 ├── banana_training.ipynb   # training notebook (reference for all crops)
 ├── convert.ipynb           # batch .keras -> .tflite converter
@@ -113,8 +114,8 @@ KrishiNova/
 ### Installation
 
 ```bash
-git clone https://github.com/Shawcha20/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/Shawcha20/smartAgriculteMlModels.git
+cd smartAgriculteMlModels
 
 python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
@@ -229,8 +230,4 @@ The quantized `.tflite` files are what the API serves.
 
 ## License
 
-Add a license of your choice (e.g. MIT) as a `LICENSE` file in the repository root.<img width="1872" height="938" alt="homepage farmer" src="https://github.com/user-attachments/assets/d69d3484-5483-4098-9f71-c50443c2c7ed" />
-
-
-
-
+Add a license of your choice (e.g. MIT) as a `LICENSE` file in the repository root.
