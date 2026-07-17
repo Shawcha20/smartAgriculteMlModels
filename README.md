@@ -25,7 +25,7 @@ The web frontend lives in a separate repository: **[smart-agriculture-web-platfo
 
 | Plant Disease Detection dashboard | Upload leaf images | Analysis results |
 |---|---|---|
-| ![Dashboard](<img width="1872" height="938" alt="homepage farmer" src="https://github.com/user-attachments/assets/696b9728-207d-4a7f-9cd4-c01e2e9d209a" />) | ![Upload](<img width="1592" height="850" alt="disease picture input" src="https://github.com/user-attachments/assets/381c1b73-2e99-4bbe-b22e-723951719b06" />) | ![Results](<img width="738" height="914" alt="detected diseases" src="https://github.com/user-attachments/assets/bf18d1f8-e384-4bc6-8b2b-da904892880e" />) |
+| ![Dashboard](/screenshots/homepagefarmer) | ![Upload](<img width="1592" height="850" alt="disease picture input" src="https://github.com/user-attachments/assets/381c1b73-2e99-4bbe-b22e-723951719b06" />) | ![Results](<img width="738" height="914" alt="detected diseases" src="https://github.com/user-attachments/assets/bf18d1f8-e384-4bc6-8b2b-da904892880e" />) |
 
 ---
 
